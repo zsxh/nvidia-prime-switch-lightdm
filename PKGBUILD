@@ -21,7 +21,7 @@ sha256sums=(
 'b7e686d0f689c9d7e2d99ffa6a3b3c110730e36a911b5672f711551b3e41d6a8'
 '5ff9c2f17ac10eb42a258f861094ba478fabaa283d11212553e1256b3997dc91'
 'edd5b3968e0cf46dcc13a8335f71291b19355c8fc75c8c3af597540fe548c929'
-'a81c12989ae92d6c261ca57c597a2226d123f57f0425004e08896fb113f4ced0'
+'88ae6059682db82a9f88a28ae1aefb988fbe7e1079f36ca1df02062f422e4c0d'
 '547ca622632e234f04900a46e5652ea5c77b252595689b22c8e46f81a800173f'
 '5b418bccb30fe3e7e50b71b1f5c2801498b8e1f0e48ac29efb26c1e33fa555c6'
 '318d8a6707d3024f83c2ba0d47ff642bece91dabe834cd7719ef8673d4f7a0ad'
@@ -31,7 +31,7 @@ arch=('x86_64')
 prefix="/usr/local"
 
 # with (1) or without (0) udev rule
-with_udev=0
+with_udev=1
 
 # with or without gtk3-systray
 with_systray_gtk3=1
@@ -56,7 +56,7 @@ import os
 
 SYSFS_PATH="/sys/bus/pci/devices"
 devs = os.listdir(SYSFS_PATH)
-gpus = [ i for i in devs if "0x03000" in open(SYSFS_PATH+"/"+i+"/class").read() ]
+gpus = [ i for i in devs if "0x030000" in open(SYSFS_PATH+"/"+i+"/class").read() or "0x030200" in open(SYSFS_PATH+"/"+i+"/class").read()]
 gpuids = {}
 # use dict instead of list, use "0" as key for intel and "1" for nvidia
 for pciid in gpus:
